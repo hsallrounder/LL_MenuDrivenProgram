@@ -1,5 +1,3 @@
-import java.util.InputMismatchException;
-
 public interface LL<T> {
     default int getSize(){
         return 0;
