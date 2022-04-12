@@ -1,6 +1,6 @@
-public class CircularDoublyLinkedList implements LL {
+public class CircularDoublyLinkedList<T> implements LL<T> {
     private int size;
-    NodeD head,tail;
+    NodeD<T> head,tail;
 
     public CircularDoublyLinkedList() {
         this.size = 0;
@@ -14,13 +14,13 @@ public class CircularDoublyLinkedList implements LL {
         return size==0;
     }
 
-    public void add(int val){
-        NodeD newnode = new NodeD(val);
+    public void add(T val){
+        NodeD<T> newnode = new NodeD(val);
         if(isEmpty()){
             head = newnode;
         }
         else {
-            NodeD temp = tail;
+            NodeD<T> temp = tail;
             newnode.setPrev(temp);
             temp.setNext(newnode);
         }
@@ -30,13 +30,13 @@ public class CircularDoublyLinkedList implements LL {
         size++;
     }
 
-    public void insertAtBeginning(int val){
+    public void insertAtBeginning(T val){
         if(isEmpty()){
             add(val);
             return;
         }
         size++;
-        NodeD newnode=new NodeD(val);
+        NodeD<T> newnode=new NodeD(val);
         newnode.setNext(head);
         head.setPrev(newnode);
         head=newnode;
@@ -44,7 +44,7 @@ public class CircularDoublyLinkedList implements LL {
         head.setPrev(tail);
     }
 
-    public void insert(int pos,int val) throws MyLLExceptions {
+    public void insert(int pos,T val) throws MyLLExceptions {
         if(pos>size) {
             if(pos%size==0){
                 pos=size;
@@ -63,8 +63,8 @@ public class CircularDoublyLinkedList implements LL {
             throw new PostionMismatchException();
         }
         else {
-            NodeD newnode = new NodeD(val);
-            NodeD temp = head;
+            NodeD<T> newnode = new NodeD(val);
+            NodeD<T> temp = head;
             for (int i=1;i<pos-1;i++) {
                 temp = temp.getNext();
             }
@@ -76,12 +76,12 @@ public class CircularDoublyLinkedList implements LL {
         }
     }
 
-    public void delete(int val) throws MyLLExceptions {
+    public void delete(T val) throws MyLLExceptions {
         if(isEmpty()){
             throw new EmptyListException();
         }
         else{
-            NodeD temp=head;
+            NodeD<T> temp=head;
             if(temp.getData()==val){
                 head.getNext().setPrev(head.getPrev());
                 head=head.getNext();
@@ -115,7 +115,7 @@ public class CircularDoublyLinkedList implements LL {
             throw new EmptyListException();
         }
         else {
-            NodeD temp=head;
+            NodeD<T> temp=head;
             if(ind==0){
                 head.getNext().setPrev(head.getPrev());
                 head=head.getNext();
@@ -136,7 +136,7 @@ public class CircularDoublyLinkedList implements LL {
             throw new EmptyListException();
         }
         else {
-            NodeD temp=head;
+            NodeD<T> temp=head;
             while(temp.getNext()!=head){
                 System.out.print(temp.getData()+"->");
                 temp=temp.getNext();
@@ -150,7 +150,7 @@ public class CircularDoublyLinkedList implements LL {
             throw new EmptyListException();
         }
         else {
-            NodeD temp=tail;
+            NodeD<T> temp=tail;
             while(temp.getPrev()!=tail){
                 System.out.print(temp.getData()+"->");
                 temp=temp.getPrev();

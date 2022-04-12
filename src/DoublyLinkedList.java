@@ -1,6 +1,6 @@
-public class DoublyLinkedList implements LL {
+public class DoublyLinkedList<T> implements LL<T> {
     private int size;
-    NodeD head,tail;
+    NodeD<T> head,tail;
 
     public DoublyLinkedList() {
         this.size = 0;
@@ -14,13 +14,13 @@ public class DoublyLinkedList implements LL {
         return size==0;
     }
 
-    public void add(int val){
-        NodeD newnode = new NodeD(val);
+    public void add(T val){
+        NodeD<T> newnode = new NodeD(val);
         if(isEmpty()){
             head = newnode;
         }
         else {
-            NodeD temp = tail;
+            NodeD<T> temp = tail;
             newnode.setPrev(temp);
             temp.setNext(newnode);
         }
@@ -28,19 +28,19 @@ public class DoublyLinkedList implements LL {
         size++;
     }
 
-    public void insertAtBeginning(int val){
+    public void insertAtBeginning(T val){
         if(isEmpty()){
             add(val);
             return;
         }
         size++;
-        NodeD newnode=new NodeD(val);
+        NodeD<T> newnode=new NodeD(val);
         newnode.setNext(head);
         head.setPrev(newnode);
         head=newnode;
     }
 
-    public void insert(int pos,int val) throws PostionMismatchException {
+    public void insert(int pos,T val) throws PostionMismatchException {
         if(isEmpty() || pos>=size){
             add(val);
         }
@@ -51,8 +51,8 @@ public class DoublyLinkedList implements LL {
             throw new PostionMismatchException();
         }
         else {
-            NodeD newnode = new NodeD(val);
-            NodeD temp = head;
+            NodeD<T> newnode = new NodeD(val);
+            NodeD<T> temp = head;
             for (int i=1;i<pos-1;i++) {
                 temp = temp.getNext();
             }
@@ -64,12 +64,12 @@ public class DoublyLinkedList implements LL {
         }
     }
 
-    public void delete(int val) throws MyLLExceptions {
+    public void delete(T val) throws MyLLExceptions {
         if(isEmpty()){
             throw new EmptyListException();
         }
         else{
-            NodeD temp=head;
+            NodeD<T> temp=head;
             if(temp.getData()==val){
                 head=head.getNext();
                 size--;
@@ -97,7 +97,7 @@ public class DoublyLinkedList implements LL {
             throw new EmptyListException();
         }
         else {
-            NodeD temp=head;
+            NodeD<T> temp=head;
             if(ind==0){
                 head=head.getNext();
                 head.setPrev(null);
@@ -118,7 +118,7 @@ public class DoublyLinkedList implements LL {
             throw new EmptyListException();
         }
         else {
-            NodeD temp=head;
+            NodeD<T> temp=head;
             while(temp!=null){
                 System.out.print(temp.getData()+"->");
                 temp=temp.getNext();
@@ -132,7 +132,7 @@ public class DoublyLinkedList implements LL {
             throw new EmptyListException();
         }
         else {
-            NodeD temp=tail;
+            NodeD<T> temp=tail;
             while(temp!=null){
                 System.out.print(temp.getData()+"->");
                 temp=temp.getPrev();

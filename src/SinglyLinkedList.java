@@ -1,6 +1,6 @@
-public class SinglyLinkedList implements LL {
+public class SinglyLinkedList<T> implements LL<T> {
     private int size;
-    NodeS head;
+    NodeS<T> head;
 
     public SinglyLinkedList() {
         this.size=0;
@@ -14,13 +14,13 @@ public class SinglyLinkedList implements LL {
         return this.size==0;
     }
 
-    public void add(int val){
-        NodeS newnode = new NodeS(val);
+    public void add(T val){
+        NodeS<T> newnode = new NodeS(val);
         if(isEmpty()){
             head = newnode;
         }
         else {
-            NodeS temp = head;
+            NodeS<T> temp = head;
             while(temp.getNext()!=null) {
                 temp = temp.getNext();
             }
@@ -29,18 +29,18 @@ public class SinglyLinkedList implements LL {
         size++;
     }
 
-    public void insertAtBeginning(int val){
+    public void insertAtBeginning(T val){
         if(isEmpty()){
             add(val);
             return;
         }
         size++;
-        NodeS newnode=new NodeS(val);
+        NodeS<T> newnode=new NodeS(val);
         newnode.setNext(head);
         head=newnode;
     }
 
-    public void insert(int pos,int val) throws MyLLExceptions {
+    public void insert(int pos,T val) throws MyLLExceptions {
         size++;
         if(isEmpty() || pos>=size){
             add(val);
@@ -52,8 +52,8 @@ public class SinglyLinkedList implements LL {
             throw new PostionMismatchException();
         }
         else {
-            NodeS newnode = new NodeS(val);
-            NodeS temp = head;
+            NodeS<T> newnode = new NodeS(val);
+            NodeS<T> temp = head;
             for (int i=1;i<pos-1;i++) {
                 temp = temp.getNext();
             }
@@ -63,12 +63,12 @@ public class SinglyLinkedList implements LL {
         }
     }
 
-    public void delete(int val) throws MyLLExceptions {
+    public void delete(T val) throws MyLLExceptions {
         if(isEmpty()){
             throw new EmptyListException();
         }
         else{
-            NodeS temp=head;
+            NodeS<T> temp=head;
             if(temp.getData()==val){
                 head=head.getNext();
                 return;
@@ -94,7 +94,7 @@ public class SinglyLinkedList implements LL {
             throw new InvalidInputException();
         }
         else {
-            NodeS temp=head;
+            NodeS<T> temp=head;
             if(ind==0){
                 head=head.getNext();
             }
@@ -113,7 +113,7 @@ public class SinglyLinkedList implements LL {
             throw new EmptyListException();
         }
         else {
-            NodeS temp=head;
+            NodeS<T> temp=head;
             while(temp!=null){
                 System.out.print(temp.getData()+"->");
                 temp=temp.getNext();

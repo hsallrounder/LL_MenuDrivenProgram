@@ -1,14 +1,16 @@
-public interface LL {
+import java.util.InputMismatchException;
+
+public interface LL<T> {
     default int getSize(){
         return 0;
     }
     default boolean isEmpty(){
         return true;
     }
-    default void add(int val){}
-    default void insertAtBeginning(int val){}
-    default void insert(int pos,int val) throws MyLLExceptions {}
-    default void delete(int val) throws MyLLExceptions {}
+    default void add(T val) {}
+    default void insertAtBeginning(T val){}
+    default void insert(int pos,T val) throws MyLLExceptions {}
+    default void delete(T val) throws MyLLExceptions {}
     default void deleteAtIndex(int ind) throws MyLLExceptions {}
     default void display() throws MyLLExceptions {}
     default void displayRev() throws MyLLExceptions {}

@@ -1,20 +1,20 @@
-public class NodeS {
-    private int data;
-    private NodeS next;
+public class NodeS<T> {
+    private T data;
+    private NodeS<T> next;
 
-    public NodeS(int data) {
+    public NodeS(T data) {
         this.data = data;
     }
 
-    public int getData() {
+    public T getData() {
         return data;
     }
 
-    public NodeS getNext() {
+    public NodeS<T> getNext() {
         return next;
     }
 
-    public void setNext(NodeS next) {
+    public void setNext(NodeS<T> next) {
         this.next = next;
     }
 }

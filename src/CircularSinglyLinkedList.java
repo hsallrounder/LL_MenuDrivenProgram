@@ -1,6 +1,6 @@
-public class CircularSinglyLinkedList implements LL {
+public class CircularSinglyLinkedList<T> implements LL<T> {
     private int size;
-    NodeS head;
+    NodeS<T> head;
 
     public CircularSinglyLinkedList() {
         this.size=0;
@@ -14,13 +14,13 @@ public class CircularSinglyLinkedList implements LL {
         return size==0;
     }
 
-    public void add(int val){
-        NodeS newnode = new NodeS(val);
+    public void add(T val){
+        NodeS<T> newnode = new NodeS(val);
         if(isEmpty()){
             head = newnode;
         }
         else {
-            NodeS temp = head;
+            NodeS<T> temp = head;
             while(temp.getNext()!=head) {
                 temp = temp.getNext();
             }
@@ -30,14 +30,14 @@ public class CircularSinglyLinkedList implements LL {
         size++;
     }
 
-    public void insertAtBeginning(int val){
+    public void insertAtBeginning(T val){
         if(isEmpty()){
             add(val);
             return;
         }
         size++;
-        NodeS newnode=new NodeS(val);
-        NodeS temp=head;
+        NodeS<T> newnode=new NodeS(val);
+        NodeS<T> temp=head;
         while(temp.getNext()!=head){
             temp=temp.getNext();
         }
@@ -46,7 +46,7 @@ public class CircularSinglyLinkedList implements LL {
         head=newnode;
     }
 
-    public void insert(int pos,int val) throws MyLLExceptions {
+    public void insert(int pos,T val) throws MyLLExceptions {
         if(pos>size) {
             if(pos%size==0){
                 pos=size;
@@ -65,8 +65,8 @@ public class CircularSinglyLinkedList implements LL {
             throw new PostionMismatchException();
         }
         else {
-            NodeS newnode = new NodeS(val);
-            NodeS temp = head;
+            NodeS<T> newnode = new NodeS(val);
+            NodeS<T> temp = head;
             for (int i=1;i<pos-1;i++) {
                 temp = temp.getNext();
             }
@@ -76,12 +76,12 @@ public class CircularSinglyLinkedList implements LL {
         }
     }
 
-    public void delete(int val) throws MyLLExceptions {
+    public void delete(T val) throws MyLLExceptions {
         if(isEmpty()){
             throw new EmptyListException();
         }
         else{
-            NodeS temp=head;
+            NodeS<T> temp=head;
             if(temp.getData()==val){
                 head=head.getNext();
                 size--;
@@ -113,7 +113,7 @@ public class CircularSinglyLinkedList implements LL {
             throw new EmptyListException();
         }
         else {
-            NodeS temp=head;
+            NodeS<T> temp=head;
             if(ind==0){
                 head=head.getNext();
             }
@@ -132,7 +132,7 @@ public class CircularSinglyLinkedList implements LL {
             throw new EmptyListException();
         }
         else {
-            NodeS temp=head;
+            NodeS<T> temp=head;
             while(temp.getNext()!=head){
                 System.out.print(temp.getData()+"->");
                 temp=temp.getNext();
